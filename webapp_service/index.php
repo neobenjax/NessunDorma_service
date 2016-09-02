@@ -30,6 +30,27 @@ switch ($act) {
 		$respuesta['js'] = (strlen($js)>0) ? $js:'//';
 		$respuesta['version'] = $version;
 		break;
+	case 'loginAuth':
+		$usuario = (isset($_GET['usuario']))?htmlspecialchars($_GET['usuario'], ENT_QUOTES, 'UTF-8'):'default';
+		$password = (isset($_GET['password']))?htmlspecialchars($_GET['password'], ENT_QUOTES, 'UTF-8'):'default';
+		$idtelefono = (isset($_GET['idtelefono']))?htmlspecialchars($_GET['idtelefono'], ENT_QUOTES, 'UTF-8'):'default';
+		$tokenapp = (isset($_GET['tokenapp']))?htmlspecialchars($_GET['tokenapp'], ENT_QUOTES, 'UTF-8'):'default';
+
+		if($usuario == 'pollo' && $password == 'buuu'){
+			$respuesta['codigo'] = 1;
+			$respuesta['idtelefono'] = $idtelefono;
+			$respuesta['tokenapp'] = $tokenapp;
+			$respuesta['primertoken'] = "asdsgfd";
+
+		} else {
+			$respuesta['codigo'] = 0;
+		}
+
+		break;
+	case 'getToken':
+		$respuesta['codigo'] = 1;
+		$respuesta['token'] = "123456";
+		break;
 	default:
 		$respuesta['codigo'] = 0;
 		$respuesta['mensaje'] = "Acceso Restringido";
